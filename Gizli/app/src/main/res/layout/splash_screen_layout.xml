@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hide all \nyour passwords at \none place"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="30dp"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:textStyle="bold"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@android:color/holo_orange_dark"
+        android:layout_alignParentBottom="true"
+        >
+        <TextView
+            android:id="@+id/Gizli"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gizli"
+            android:textSize="60dp"
+            android:textColor="#ffffff"
+            android:textStyle="italic"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+</RelativeLayout>

@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.rohksin.gizli.POJO.Secret;
 import com.rohksin.gizli.R;
-import com.rohksin.gizli.Utility.AppUtil;
+import com.rohksin.gizli.Utility.FileUtil;
 
 /**
  * Created by Illuminati on 8/20/2017.
@@ -23,7 +23,7 @@ public class SeeSercretActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.see_secret_layout);
-        Secret secret = (Secret)getIntent().getSerializableExtra(AppUtil.SECRET_PASS_OBJECT);
+        Secret secret = (Secret)getIntent().getSerializableExtra(FileUtil.SECRET_PASS_OBJECT);
 
         displayName = (TextView)findViewById(R.id.displayName);
         desc = (TextView)findViewById(R.id.Desc);

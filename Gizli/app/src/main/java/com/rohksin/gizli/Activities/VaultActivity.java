@@ -2,7 +2,6 @@ package com.rohksin.gizli.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.Loader;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,8 +14,7 @@ import android.widget.Toast;
 
 import com.rohksin.gizli.Adapters.VaultListAdapter;
 import com.rohksin.gizli.R;
-import com.rohksin.gizli.Utility.AppUtil;
-import com.rohksin.gizli.Utility.ArtifactCreator;
+import com.rohksin.gizli.Utility.FileUtil;
 import com.rohksin.gizli.Utility.MainVault;
 
 /**
@@ -32,7 +30,7 @@ public class VaultActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.valut_layout);
-        AppUtil.Loader(VaultActivity.this);
+        FileUtil.Loader(VaultActivity.this);
         TextView textView = (TextView)findViewById(R.id.TotalItems);
         Button button = (Button)findViewById(R.id.AddItem);
         recyclerView = (RecyclerView)findViewById(R.id.vaultList);
@@ -70,7 +68,7 @@ public class VaultActivity extends AppCompatActivity {
 
     private void setUpList()
     {
-        adapter = new VaultListAdapter(VaultActivity.this, AppUtil.getAllSecret());
+        adapter = new VaultListAdapter(VaultActivity.this, FileUtil.getAllSecret());
         recyclerView.setAdapter(adapter);
     }
 

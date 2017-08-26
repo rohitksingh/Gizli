@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.rohksin.gizli.Activities.SeeSercretActivity;
 import com.rohksin.gizli.POJO.Secret;
 import com.rohksin.gizli.R;
-import com.rohksin.gizli.Utility.AppUtil;
+import com.rohksin.gizli.Utility.FileUtil;
 
 import java.util.List;
 
@@ -45,7 +45,7 @@ public class VaultListAdapter extends RecyclerView.Adapter<VaultListAdapter.Vaul
               @Override
               public void onClick(View v) {
                   Intent i = new Intent(context, SeeSercretActivity.class);
-                  i.putExtra(AppUtil.SECRET_PASS_OBJECT,secrets.get(position));
+                  i.putExtra(FileUtil.SECRET_PASS_OBJECT,secrets.get(position));
                   context.startActivity(i);
               }
           });

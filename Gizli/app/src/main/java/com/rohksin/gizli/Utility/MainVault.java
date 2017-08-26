@@ -10,7 +10,6 @@ import java.io.File;
 public class MainVault {
 
     private static Context context;
-    private static String MainVaultPassword = "password";
 
     public MainVault(Context context)
     {
@@ -27,10 +26,6 @@ public class MainVault {
         return context.getFilesDir().list();
     }
 
-    public static boolean passwordCorrect(String password)
-    {
-        return MainVaultPassword.equals(password);
-    }
 
     public static File[] getAllFiles()
     {

@@ -3,16 +3,13 @@ package com.rohksin.gizli.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.rohksin.gizli.POJO.Secret;
 import com.rohksin.gizli.R;
-import com.rohksin.gizli.Utility.AppUtil;
+import com.rohksin.gizli.Utility.FileUtil;
 import com.rohksin.gizli.Utility.MainVault;
 
 /**
@@ -75,7 +72,7 @@ public class AddNewItem extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outBundle)
     {
-        AppUtil.makeToast(AddNewItem.this,"SAVING DATA");
+        FileUtil.makeToast(AddNewItem.this, "SAVING DATA");
         super.onSaveInstanceState(outBundle);
         outBundle.putBoolean("REsultSAVED",resultSaved);
     }
@@ -102,13 +99,13 @@ public class AddNewItem extends AppCompatActivity {
 
     private void saveFailure(String failureMsg)
     {
-        AppUtil.makeToast(AddNewItem.this, failureMsg);
+        FileUtil.makeToast(AddNewItem.this, failureMsg);
     }
 
     private void saveSuccess(Secret secret)
     {
-        AppUtil.createNewSecret(secret);
-        AppUtil.makeToast(AddNewItem.this, "Saved SuccessFully");
+        FileUtil.createNewSecret(secret);
+        FileUtil.makeToast(AddNewItem.this, "Saved SuccessFully");
         resultSaved = true;
     }
 
