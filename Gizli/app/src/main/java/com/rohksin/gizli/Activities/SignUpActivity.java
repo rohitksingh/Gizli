@@ -94,6 +94,7 @@ public class SignUpActivity extends AppCompatActivity{
         Certificate cert = new Certificate();
         //cert.setDisplayName(password.getText().toString());
         cert.setSecret(password.getText().toString());
+        cert.setLastVisit("Welcome To Gizli Vault");
         FileUtil.createCertificate(cert);
     }
 

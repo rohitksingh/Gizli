@@ -7,6 +7,7 @@ public class Certificate extends Secret {
 
     private String secretAnswer;
     private String secretQuestion;
+    private String lastVisit;
 
     public String getSecretQuestion() {
         return secretQuestion;
@@ -22,5 +23,15 @@ public class Certificate extends Secret {
 
     public void setSecretAnswer(String secretAnswer) {
         this.secretAnswer = secretAnswer;
+    }
+
+    public String getLastVisit()
+    {
+        return lastVisit;
+    }
+
+    public void setLastVisit(String lastVisit)
+    {
+        this.lastVisit = lastVisit;
     }
 }

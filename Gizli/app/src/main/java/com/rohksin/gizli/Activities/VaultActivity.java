@@ -24,8 +24,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rohksin.gizli.Adapters.VaultListAdapter;
+import com.rohksin.gizli.POJO.Certificate;
 import com.rohksin.gizli.POJO.Secret;
 import com.rohksin.gizli.R;
+import com.rohksin.gizli.Utility.AppUtil;
 import com.rohksin.gizli.Utility.FileUtil;
 import com.rohksin.gizli.Utility.MainVault;
 
@@ -42,6 +44,7 @@ public class VaultActivity extends AppCompatActivity {
     private VaultListAdapter adapter = null;
 
     private TextView itemsAvailable;
+    private TextView lastVisited;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -54,6 +57,9 @@ public class VaultActivity extends AppCompatActivity {
 
         setContentView(R.layout.vault_item_list_layout);
 
+        Log.d("Current time", AppUtil.getCurrentTime());
+
+
         FileUtil.Loader(VaultActivity.this);
         //TextView textView = (TextView)findViewById(R.id.TotalItems);
         FloatingActionButton button = (FloatingActionButton)findViewById(R.id.AddItem);
@@ -61,6 +67,10 @@ public class VaultActivity extends AppCompatActivity {
         button.setImageResource(R.drawable.ic_add_box_white);
 
         itemsAvailable = (TextView)findViewById(R.id.itemsAvailable);
+        lastVisited = (TextView)findViewById(R.id.lastVisited);
+        lastVisited.setText(getLastVisited());
+
+        updateLastVisitedTime();
 
         recyclerView = (RecyclerView)findViewById(R.id.vaultList);
 
@@ -127,6 +137,21 @@ public class VaultActivity extends AppCompatActivity {
             getWindow().setEnterTransition(slide);
             getWindow().setExitTransition(slide);
         }
+    }
+
+    public void updateLastVisitedTime()
+    {
+        Certificate certificate = FileUtil.getCertificate();
+        certificate.setLastVisit(AppUtil.getCurrentTime());
+        FileUtil.createCertificate(certificate);
+    }
+
+    public  String getLastVisited()
+    {
+        Certificate certificate = FileUtil.getCertificate();
+
+        return certificate.getLastVisit();
+
     }
 
 
