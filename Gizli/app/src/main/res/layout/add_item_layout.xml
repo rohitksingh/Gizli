@@ -1,34 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:background="@android:color/holo_purple"
+    >
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:id="@+id/AddButton"
+        android:layout_centerInParent="true"
+        android:background="@android:color/holo_red_dark"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:text="Save"
+
         />
-   <EditText
-       android:id="@+id/Text"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:gravity="left"
-       android:hint="Display Text"
-       />
-    <EditText
-        android:id="@+id/Desc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="left"
-        android:hint="Desc"
-        />
+
     <EditText
         android:id="@+id/Secret"
+        android:layout_above="@id/AddButton"
+        android:hint="Secret"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
-        android:hint="Secret"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:maxLines="1"
+        android:textColorHint="@android:color/holo_red_dark"
         />
-</LinearLayout>
+
+    <EditText
+        android:id="@+id/Desc"
+        android:layout_above="@id/Secret"
+        android:hint="Desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:maxLines="1"
+        android:textColorHint="@android:color/holo_red_dark"
+        />
+
+   <EditText
+       android:id="@+id/Text"
+       android:layout_above="@id/Desc"
+       android:hint="Display Text"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:gravity="center"
+       android:layout_marginTop="10dp"
+       android:layout_marginLeft="20dp"
+       android:layout_marginRight="20dp"
+       android:layout_marginBottom="10dp"
+       android:textColor="@android:color/holo_red_dark"
+       android:maxLines="1"
+       android:textColorHint="@android:color/holo_red_dark"
+       />
+
+</RelativeLayout>

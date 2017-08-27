@@ -3,9 +3,11 @@ package com.rohksin.gizli.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.rohksin.gizli.Activities.SeeSercretActivity;
@@ -39,9 +41,29 @@ public class VaultListAdapter extends RecyclerView.Adapter<VaultListAdapter.Vaul
 
     @Override
     public void onBindViewHolder(VaultItem holder, final int position) {
-          holder.name.setText((secrets.get(position)).getDisplayName());
 
-          holder.itemView.setOnClickListener(new View.OnClickListener() {
+          String displayText = (secrets.get(position)).getDisplayName();
+          int color = holder.colors[position%4];
+
+          Log.d("Color", color + "");
+
+          holder.name.setText(displayText);
+         // holder.name.setTextColor(context.getColor(color));
+
+
+          holder.placeHolder.setText(displayText.charAt(0) + "");
+          holder.placeHolder.setBackgroundColor(context.getColor(color));
+
+        holder.openButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, SeeSercretActivity.class);
+                i.putExtra(FileUtil.SECRET_PASS_OBJECT,secrets.get(position));
+                context.startActivity(i);
+            }
+        });
+
+         /* holder.itemView.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
                   Intent i = new Intent(context, SeeSercretActivity.class);
@@ -49,6 +71,7 @@ public class VaultListAdapter extends RecyclerView.Adapter<VaultListAdapter.Vaul
                   context.startActivity(i);
               }
           });
+          */
     }
 
     @Override
@@ -59,9 +82,23 @@ public class VaultListAdapter extends RecyclerView.Adapter<VaultListAdapter.Vaul
     public class VaultItem extends RecyclerView.ViewHolder{
 
         public TextView name;
+        public TextView placeHolder;
+        public Button openButton;
+
+        public int[] colors = new int[]{
+                android.R.color.holo_blue_light,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_red_dark,
+                android.R.color.holo_orange_dark
+        };
+
+
+
         public VaultItem(View itemView) {
             super(itemView);
             name = (TextView)itemView.findViewById(R.id.displayName);
+            placeHolder = (TextView)itemView.findViewById(R.id.placeHolderFirstText);
+            openButton = (Button)itemView.findViewById(R.id.openButton);
         }
     }
 }

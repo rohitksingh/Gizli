@@ -16,7 +16,6 @@
         android:textColor="#ffffff"
         android:textStyle="bold"
         android:layout_centerInParent="true"
-
         />
     <EditText
         android:layout_above="@id/signUpButton"
@@ -48,5 +47,6 @@
         android:textColor="@android:color/holo_red_dark"
         android:maxLines="1"
         android:textColorHint="@android:color/holo_red_dark"
+
         />
 </RelativeLayout>

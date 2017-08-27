@@ -23,4 +23,6 @@ public class MainPassword extends Secret {
     public void setSecretAnswer(String secretAnswer) {
         this.secretAnswer = secretAnswer;
     }
+
+
 }

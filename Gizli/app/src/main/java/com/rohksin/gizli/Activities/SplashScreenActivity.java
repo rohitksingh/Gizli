@@ -1,8 +1,10 @@
 package com.rohksin.gizli.Activities;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -83,14 +85,26 @@ public class SplashScreenActivity extends AppCompatActivity {
 
               if(isAlreadySignedUp)
               {
+
                   i = new Intent(SplashScreenActivity.this,MainActivity.class);
+
+
               }
               else
               {
                   i = new Intent(SplashScreenActivity.this,SignUpActivity.class);
               }
 
-            startActivity(i);
+
+            if(Build.VERSION.SDK_INT>20)
+            {
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SplashScreenActivity.this);
+                startActivity(i,options.toBundle());
+            }
+            else {
+                startActivity(i);
+            }
+
             finish();
 
 

@@ -22,13 +22,15 @@ public class SignUpActivity extends AppCompatActivity{
     private EditText confirmPassword;
     private Button signUpButton;
 
+    private InputMethodManager imm;
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_activity_layout);
 
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
         password = (EditText)findViewById(R.id.password);
@@ -45,6 +47,8 @@ public class SignUpActivity extends AppCompatActivity{
                     FileUtil.makeToast(SignUpActivity.this, "Creating certiface");
 
                     signUpUserForFirstTime();
+
+                    imm.toggleSoftInput(InputMethodManager.RESULT_SHOWN, 0);
 
                     redirectToLoginActivity();
                 }

@@ -1,9 +1,16 @@
 package com.rohksin.gizli.Activities;
 
+import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Explode;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -32,9 +39,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        setAnimation();
+
         setContentView(R.layout.activity_main);
 
         text = (EditText)findViewById(R.id.vaultPassword);
+
+        text.setShowSoftInputOnFocus(false);
 
         loadKeyPad();
 
@@ -48,7 +62,14 @@ public class MainActivity extends AppCompatActivity {
                 {
                    // Toast.makeText(MainActivity.this,"Login SuccessFul",Toast.LENGTH_LONG).show();
                     Intent i = new Intent(MainActivity.this,VaultActivity.class);
-                    startActivity(i);
+                    if(Build.VERSION.SDK_INT>20) {
+                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
+                        startActivity(i,options.toBundle());
+                    }
+                    else
+                    {
+                        startActivity(i);
+                    }
                 }
                 else {
                     Toast.makeText(MainActivity.this,"Incorrect Password",Toast.LENGTH_LONG).show();
@@ -153,6 +174,18 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public void setAnimation()
+    {
+        if(Build.VERSION.SDK_INT>20)
+        {
+            Explode explode = new Explode();
+            explode.setDuration(500);
+            explode.setInterpolator(new LinearInterpolator());
+            getWindow().setEnterTransition(explode);
+            getWindow().setExitTransition(explode);
+        }
     }
 
 

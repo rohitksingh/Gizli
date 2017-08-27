@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 public class Secret implements Serializable{
 
+
     private String displayName;
     private String description;
     private String secret;

@@ -16,13 +16,18 @@
             android:theme="@style/AppTheme.NoActionBar" >
 
         </activity>
-        <activity android:name=".Activities.VaultActivity">
+        <activity android:name=".Activities.VaultActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".Activities.AddNewItem"
             android:theme="@style/AppTheme.NoActionBar"
-        </activity>
-        <activity android:name=".Activities.AddNewItem"/>
-        <activity android:name=".Activities.SeeSercretActivity"/>
-        <activity android:name=".Activities.SplashScreenActivity">
+            />
+        <activity android:name=".Activities.SeeSercretActivity"
             android:theme="@style/AppTheme.NoActionBar"
+            />
+
+        <activity android:name=".Activities.SplashScreenActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
