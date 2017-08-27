@@ -35,6 +35,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.SignUpActivity"/>
+
+
+        <activity android:name=".Activities.Test">
+
+        </activity>
     </application>
 
 </manifest>

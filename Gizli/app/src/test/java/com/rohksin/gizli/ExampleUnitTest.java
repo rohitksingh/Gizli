@@ -1,5 +1,7 @@
 package com.rohksin.gizli;
 
+import com.rohksin.gizli.Activities.Test;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;

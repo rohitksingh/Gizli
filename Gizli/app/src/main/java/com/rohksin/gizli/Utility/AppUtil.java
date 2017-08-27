@@ -2,6 +2,10 @@ package com.rohksin.gizli.Utility;
 
 import android.content.Context;
 import android.os.Vibrator;
+import android.support.v4.app.Fragment;
+
+import com.rohksin.gizli.Fragments.PasswordSetFragment;
+import com.rohksin.gizli.Fragments.SetSecretImageFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,5 +38,15 @@ public class AppUtil {
 
         return "Last visited at "+currentDate;
 
+    }
+
+    public static Fragment[] getAllSignUpFragments()
+    {
+       return new Fragment[]{
+
+               PasswordSetFragment.getInstance(),
+               SetSecretImageFragment.getInstance()
+
+        };
     }
 }
