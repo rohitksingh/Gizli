@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.Explode;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
@@ -20,6 +22,7 @@ import com.rohksin.gizli.R;
 import com.rohksin.gizli.Utility.AppUtil;
 import com.rohksin.gizli.Utility.FileUtil;
 import com.rohksin.gizli.Utility.GizliAnimUtil;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText text;
 
     private TextView forgotPassword;
+
+    private boolean doubleTapped = false;
 
 
     @Override
@@ -65,21 +70,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 boolean result = FileUtil.passwordCorrect(text.getText() + "");
-                if(result==true)
-                {
-                   // Toast.makeText(MainActivity.this,"Login SuccessFul",Toast.LENGTH_LONG).show();
-                    Intent i = new Intent(MainActivity.this,VaultActivity.class);
-                    if(Build.VERSION.SDK_INT>20) {
+                if (result == true) {
+                    // Toast.makeText(MainActivity.this,"Login SuccessFul",Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(MainActivity.this, VaultActivity.class);
+                    if (Build.VERSION.SDK_INT > 20) {
                         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
-                        startActivity(i,options.toBundle());
-                    }
-                    else
-                    {
+                        startActivity(i, options.toBundle());
+                    } else {
                         startActivity(i);
                     }
-                }
-                else {
-                    Toast.makeText(MainActivity.this,"Incorrect Password",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Incorrect Password", Toast.LENGTH_LONG).show();
                     AppUtil.giveVibrateWrning(1000);
 
                     // HOW TO CANCEL ANIMATION IF one is already going on ?
@@ -88,6 +89,31 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+
+                doubleTapped = false;
+
+            }
+        }, 2000);
+
+        if(doubleTapped)
+        {
+            super.onBackPressed();
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Press again to exit",Toast.LENGTH_SHORT).show();
+            doubleTapped = true;
+        }
     }
 
     public void loadKeyPad()
@@ -105,23 +131,6 @@ public class MainActivity extends AppCompatActivity {
         cancel = (Button)findViewById(R.id.cancel);
         view = (Button)findViewById(R.id.view);
 
-        /*int time = 3000;
-
-        one.animate().alpha(1)
-        .setDuration(time);
-        //one.animate().rotationY(360).setDuration(time);
-        two.animate().rotationY(360).setDuration(time);
-        three.animate().rotationY(360).setDuration(time);
-        four.animate().rotationY(360).setDuration(time);
-        five.animate().rotationY(360).setDuration(time);
-        six.animate().rotationY(360).setDuration(time);
-        seven.animate().rotationY(360).setDuration(time);
-        eight.animate().rotationY(360).setDuration(time);
-        nine.animate().rotationY(360).setDuration(time);
-        zero.animate().rotationY(360).setDuration(time);
-        cancel.animate().rotationY(360).setDuration(time);
-
-        */
 
         GizliAnimUtil.fadeInAnim(one,3000);
         GizliAnimUtil.fadeInAnim(two,3000);
