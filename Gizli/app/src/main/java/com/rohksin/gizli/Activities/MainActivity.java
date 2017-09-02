@@ -13,11 +13,13 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rohksin.gizli.R;
 import com.rohksin.gizli.Utility.AppUtil;
 import com.rohksin.gizli.Utility.FileUtil;
+import com.rohksin.gizli.Utility.GizliAnimUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private Button cancel;
     private Button view;
     private EditText text;
+
+    private TextView forgotPassword;
 
 
     @Override
@@ -52,8 +56,11 @@ public class MainActivity extends AppCompatActivity {
 
         loadKeyPad();
 
+        forgotPassword = (TextView)findViewById(R.id.forgotPassword);
 
         Button button = (Button)findViewById(R.id.Submit);
+        GizliAnimUtil.popUpAnmi(button);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     Toast.makeText(MainActivity.this,"Incorrect Password",Toast.LENGTH_LONG).show();
                     AppUtil.giveVibrateWrning(1000);
+
+                    // HOW TO CANCEL ANIMATION IF one is already going on ?
+                    //GizliAnimUtil.waringAnim(forgotPassword);
+
                 }
             }
         });
@@ -94,10 +105,41 @@ public class MainActivity extends AppCompatActivity {
         cancel = (Button)findViewById(R.id.cancel);
         view = (Button)findViewById(R.id.view);
 
+        /*int time = 3000;
+
+        one.animate().alpha(1)
+        .setDuration(time);
+        //one.animate().rotationY(360).setDuration(time);
+        two.animate().rotationY(360).setDuration(time);
+        three.animate().rotationY(360).setDuration(time);
+        four.animate().rotationY(360).setDuration(time);
+        five.animate().rotationY(360).setDuration(time);
+        six.animate().rotationY(360).setDuration(time);
+        seven.animate().rotationY(360).setDuration(time);
+        eight.animate().rotationY(360).setDuration(time);
+        nine.animate().rotationY(360).setDuration(time);
+        zero.animate().rotationY(360).setDuration(time);
+        cancel.animate().rotationY(360).setDuration(time);
+
+        */
+
+        GizliAnimUtil.fadeInAnim(one,3000);
+        GizliAnimUtil.fadeInAnim(two,3000);
+        GizliAnimUtil.fadeInAnim(three,3000);
+        GizliAnimUtil.fadeInAnim(four,3000);
+        GizliAnimUtil.fadeInAnim(five,3000);
+        GizliAnimUtil.fadeInAnim(six,3000);
+        GizliAnimUtil.fadeInAnim(seven,3000);
+        GizliAnimUtil.fadeInAnim(eight,3000);
+        GizliAnimUtil.fadeInAnim(nine,3000);
+        GizliAnimUtil.fadeInAnim(zero,3000);
+        GizliAnimUtil.fadeInAnim(cancel,3000);
+
+
         one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               text.append("1");
+                text.append("1");
             }
         });
 

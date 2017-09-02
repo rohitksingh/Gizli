@@ -61,9 +61,11 @@
         android:layout_marginTop="10dp"
         android:layout_below="@id/keypad"
         android:layout_centerHorizontal="true"
+        android:alpha="0"
         />
     </RelativeLayout>
     <TextView
+        android:id="@+id/forgotPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Forgot Password ?"

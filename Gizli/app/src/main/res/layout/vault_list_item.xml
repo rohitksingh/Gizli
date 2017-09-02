@@ -27,15 +27,13 @@
         />
     <Button
         android:id="@+id/openButton"
-        android:layout_width="35dp"
-        android:layout_height="20dp"
-        android:text="Open"
-        android:background="#a5a5a5"
-        android:textColor="#ffffff"
+        android:layout_width="45dp"
+        android:layout_height="30dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:textSize="10dp"
         android:layout_margin="10dp"
+        style="@style/OpenVaultButton"
         />
     <TextView
         android:id="@+id/displayName"

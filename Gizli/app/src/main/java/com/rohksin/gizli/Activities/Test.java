@@ -6,14 +6,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.rohksin.gizli.CallBackListeners.QuestionCompleteListener;
 import com.rohksin.gizli.R;
 import com.rohksin.gizli.Utility.AppUtil;
 
 /**
  * Created by Illuminati on 8/27/2017.
  */
-public class Test extends AppCompatActivity {
+public class Test extends AppCompatActivity implements QuestionCompleteListener{
 
     private Fragment[] fragments;
     private Button prev;
@@ -79,4 +81,8 @@ public class Test extends AppCompatActivity {
     }
 
 
+    @Override
+    public void questionComplete() {
+        Toast.makeText(Test.this,"Question Complete",Toast.LENGTH_LONG) .show();
+    }
 }
