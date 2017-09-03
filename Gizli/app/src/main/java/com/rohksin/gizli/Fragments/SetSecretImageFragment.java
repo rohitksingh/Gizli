@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.rohksin.gizli.Adapters.SecretImagesAdapter;
+import com.rohksin.gizli.CallBackListeners.QuestionCompleteListener;
 import com.rohksin.gizli.POJO.Certificate;
 import com.rohksin.gizli.R;
 import com.rohksin.gizli.Utility.AppUtil;
@@ -22,12 +23,17 @@ import java.util.List;
 /**
  * Created by Illuminati on 8/27/2017.
  */
-public class SetSecretImageFragment  extends Fragment implements AdapterCallBack{
+public class SetSecretImageFragment  extends Fragment implements AdapterCallBack {
 
     private static Certificate certificate ;
     private RecyclerView recyclerView;
     private Context context;
     private Button submitButton;
+    private SecretImagesAdapter adapter;
+
+    private QuestionCompleteListener questionCompleteListener;
+
+    private int selectedImage;
 
     public static SetSecretImageFragment getInstance(Certificate certificateFromActivity)
     {
@@ -43,6 +49,7 @@ public class SetSecretImageFragment  extends Fragment implements AdapterCallBack
     {
         super.onAttach(context);
         this.context = context;
+        questionCompleteListener = (QuestionCompleteListener)context;
     }
 
     @Override
@@ -54,32 +61,38 @@ public class SetSecretImageFragment  extends Fragment implements AdapterCallBack
 
         submitButton = (Button)view.findViewById(R.id.submit);
 
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                certificate.setSecretImage(selectedImage);
+                questionCompleteListener.questionComplete(certificate);
+            }
+        });
 
         GridLayoutManager glm = new GridLayoutManager(context,2);
 
         recyclerView.setLayoutManager(glm);
 
-        ///TEMP MOVE IT TO UTIL CLASS
-
-
-        SecretImagesAdapter adapter = new SecretImagesAdapter(context, AppUtil.getAllSecretImages(),this);
+        adapter = new SecretImagesAdapter(context, AppUtil.getAllSecretImages(),this);
         recyclerView.setAdapter(adapter);
 
         Log.d("Certificate","Test\n"+certificate);
-        /*
-        Component logic goes here
-         */
+
         return view;
     }
 
     @Override
-    public void setVisibility(int visibility) {
+    public void setVisibility(int image) {
+
         submitButton.setVisibility(View.VISIBLE);
+        selectedImage = image;
     }
+
+
+
 }
 
 interface AdapterCallBack
 {
     public void setVisibility(int visibility);
-
 }

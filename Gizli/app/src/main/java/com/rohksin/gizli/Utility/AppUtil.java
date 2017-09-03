@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 
 import com.rohksin.gizli.Fragments.PasswordSetFragment;
 import com.rohksin.gizli.Fragments.SetSecretImageFragment;
+import com.rohksin.gizli.Fragments.SetUpFinish;
 import com.rohksin.gizli.POJO.Certificate;
 import com.rohksin.gizli.R;
 
@@ -49,7 +50,8 @@ public class AppUtil {
        return new Fragment[]{
 
                PasswordSetFragment.getInstance(certificate),
-               SetSecretImageFragment.getInstance(certificate)
+               SetSecretImageFragment.getInstance(certificate),
+               SetUpFinish.getInstance(certificate)
 
         };
     }
@@ -63,6 +65,7 @@ public class AppUtil {
         secretImages.add(R.drawable.ic_clear_white);
         secretImages.add(R.drawable.ic_delete_white);
         secretImages.add(R.drawable.ic_mode_edit_white);
+        secretImages.add(R.drawable.gizli);
 
         return secretImages;
     }

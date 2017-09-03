@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class PasswordSetFragment extends Fragment {
     private TextInputLayout password;
     private TextInputLayout confirmPassword;
     private  Context context;
+    private InputMethodManager imm;
     /// Is there any issue using onAttach Context ?
 
 
@@ -53,6 +55,9 @@ public class PasswordSetFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.signup_activity_layout,parent,false);
+
+        imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
         Button button = (Button)view.findViewById(R.id.signUpButton);
         button.setText("NEXT");
@@ -84,7 +89,14 @@ public class PasswordSetFragment extends Fragment {
 
     public boolean checkifValid(String str1 , String str2)
     {
-        return str1.equals(str2);
+
+        if(str1.length()>0) {
+            return str1.equals(str2);
+        }
+
+        return false;
     }
+
+
 
 }

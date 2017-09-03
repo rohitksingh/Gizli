@@ -92,7 +92,9 @@ public class SplashScreenActivity extends AppCompatActivity {
               }
               else
               {
-                  i = new Intent(SplashScreenActivity.this,SignUpActivity.class);
+                 // i = new Intent(SplashScreenActivity.this,SignUpActivity.class);
+
+                  i = new Intent(SplashScreenActivity.this,Test.class);
               }
 
 

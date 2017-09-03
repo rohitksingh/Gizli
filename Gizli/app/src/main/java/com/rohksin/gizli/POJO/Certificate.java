@@ -9,6 +9,16 @@ public class Certificate extends Secret {
     private String secretQuestion;
     private String lastVisit;
 
+    public int getSecretImage() {
+        return secretImage;
+    }
+
+    public void setSecretImage(int secretImage) {
+        this.secretImage = secretImage;
+    }
+
+    private int secretImage;
+
     public String getSecretQuestion() {
         return secretQuestion;
     }
@@ -38,6 +48,6 @@ public class Certificate extends Secret {
     @Override
     public String toString()
     {
-        return this.getDisplayName()+ "\n" + this.getSecret() + "\n"+ lastVisit + "\n" + secretQuestion + "\n" + secretAnswer;
+        return this.getDisplayName()+ "\n" + this.getSecret() + "\n"+ lastVisit + "\n" + secretQuestion + "\n" + secretAnswer + "\n" + secretImage ;
     }
 }
