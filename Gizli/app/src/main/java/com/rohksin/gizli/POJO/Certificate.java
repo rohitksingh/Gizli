@@ -34,4 +34,10 @@ public class Certificate extends Secret {
     {
         this.lastVisit = lastVisit;
     }
+
+    @Override
+    public String toString()
+    {
+        return this.getDisplayName()+ "\n" + this.getSecret() + "\n"+ lastVisit + "\n" + secretQuestion + "\n" + secretAnswer;
+    }
 }

@@ -1,24 +1,48 @@
 package com.rohksin.gizli.Fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.rohksin.gizli.Adapters.SecretImagesAdapter;
+import com.rohksin.gizli.POJO.Certificate;
 import com.rohksin.gizli.R;
+import com.rohksin.gizli.Utility.AppUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Illuminati on 8/27/2017.
  */
-public class SetSecretImageFragment  extends Fragment {
+public class SetSecretImageFragment  extends Fragment implements AdapterCallBack{
 
-    public static SetSecretImageFragment getInstance()
+    private static Certificate certificate ;
+    private RecyclerView recyclerView;
+    private Context context;
+    private Button submitButton;
+
+    public static SetSecretImageFragment getInstance(Certificate certificateFromActivity)
     {
         Bundle args = new Bundle();
         SetSecretImageFragment fragment = new SetSecretImageFragment();
         fragment.setArguments(args);
+        certificate = certificateFromActivity;
         return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context)
+    {
+        super.onAttach(context);
+        this.context = context;
     }
 
     @Override
@@ -26,10 +50,36 @@ public class SetSecretImageFragment  extends Fragment {
     {
         View view = inflater.inflate(R.layout.secret_image_layout,parent,false);
 
+        recyclerView = (RecyclerView)view.findViewById(R.id.secretImages);
+
+        submitButton = (Button)view.findViewById(R.id.submit);
+
+
+        GridLayoutManager glm = new GridLayoutManager(context,2);
+
+        recyclerView.setLayoutManager(glm);
+
+        ///TEMP MOVE IT TO UTIL CLASS
+
+
+        SecretImagesAdapter adapter = new SecretImagesAdapter(context, AppUtil.getAllSecretImages(),this);
+        recyclerView.setAdapter(adapter);
+
+        Log.d("Certificate","Test\n"+certificate);
         /*
         Component logic goes here
          */
         return view;
     }
+
+    @Override
+    public void setVisibility(int visibility) {
+        submitButton.setVisibility(View.VISIBLE);
+    }
+}
+
+interface AdapterCallBack
+{
+    public void setVisibility(int visibility);
 
 }
