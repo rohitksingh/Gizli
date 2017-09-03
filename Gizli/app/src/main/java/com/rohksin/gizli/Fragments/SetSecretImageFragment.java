@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.rohksin.gizli.Adapters.SecretImagesAdapter;
 import com.rohksin.gizli.CallBackListeners.QuestionCompleteListener;
@@ -57,6 +58,11 @@ public class SetSecretImageFragment  extends Fragment implements AdapterCallBack
     {
         View view = inflater.inflate(R.layout.secret_image_layout,parent,false);
 
+        TextView instuction = (TextView)view.findViewById(R.id.instruction);
+        instuction.setText("Tap two times to select your secret Image");
+        TextView progressVaule = (TextView)view.findViewById(R.id.progressValue);
+        progressVaule.setText("2/3");
+
         recyclerView = (RecyclerView)view.findViewById(R.id.secretImages);
 
         submitButton = (Button)view.findViewById(R.id.submit);
@@ -69,7 +75,7 @@ public class SetSecretImageFragment  extends Fragment implements AdapterCallBack
             }
         });
 
-        GridLayoutManager glm = new GridLayoutManager(context,2);
+        GridLayoutManager glm = new GridLayoutManager(context,3);
 
         recyclerView.setLayoutManager(glm);
 

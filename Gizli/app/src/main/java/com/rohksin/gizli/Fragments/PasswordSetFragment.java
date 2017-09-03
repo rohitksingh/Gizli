@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rohksin.gizli.Activities.Test;
@@ -59,9 +60,9 @@ public class PasswordSetFragment extends Fragment {
         imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
+
         Button button = (Button)view.findViewById(R.id.signUpButton);
         button.setText("NEXT");
-
         password = (TextInputLayout)view.findViewById(R.id.password);
 
         confirmPassword = (TextInputLayout)view.findViewById(R.id.confirmPassword);
@@ -74,6 +75,8 @@ public class PasswordSetFragment extends Fragment {
 
                     certificate.setSecret(password.getEditText().getText().toString());
                     listener.questionComplete(certificate);
+                    imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+
                 }
                 else {
                     Toast.makeText(context,"Passwords do not match",Toast.LENGTH_SHORT).show();
@@ -99,4 +102,8 @@ public class PasswordSetFragment extends Fragment {
 
 
 
+
 }
+
+
+//TODO WHAT ARE THE CONSTANTS IN INPUTMETHODMANAGER
