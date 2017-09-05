@@ -86,7 +86,9 @@ public class SplashScreenActivity extends AppCompatActivity {
               if(isAlreadySignedUp)
               {
 
-                  i = new Intent(SplashScreenActivity.this,MainActivity.class);
+                 // i = new Intent(SplashScreenActivity.this,MainActivity.class);
+
+                  i = new Intent(SplashScreenActivity.this,CreateSecretActivity.class);
 
 
               }
