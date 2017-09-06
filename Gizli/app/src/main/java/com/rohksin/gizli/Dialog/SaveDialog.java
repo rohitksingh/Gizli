@@ -1,4 +1,4 @@
-package com.rohksin.gizli;
+package com.rohksin.gizli.Dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.rohksin.gizli.CallBackListeners.SaveDialogListener;
 import com.rohksin.gizli.Fragments.CreateNewSecretFragment;
+import com.rohksin.gizli.R;
 import com.rohksin.gizli.Utility.FileUtil;
 import com.rohksin.gizli.Utility.MainVault;
 

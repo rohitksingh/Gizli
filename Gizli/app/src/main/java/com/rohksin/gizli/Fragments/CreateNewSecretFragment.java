@@ -10,14 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 
-import com.rohksin.gizli.Activities.AddNewItem;
 import com.rohksin.gizli.Activities.VaultActivity;
 import com.rohksin.gizli.CallBackListeners.SaveDialogListener;
 import com.rohksin.gizli.POJO.Secret;
 import com.rohksin.gizli.R;
-import com.rohksin.gizli.SaveDialog;
+import com.rohksin.gizli.Dialog.SaveDialog;
 import com.rohksin.gizli.Utility.FileUtil;
 
 /**
@@ -27,9 +25,6 @@ public class CreateNewSecretFragment extends Fragment implements SaveDialogListe
 
     private EditText secretText;
     private Button saveButton;
-    private Button savePrivateButton;
-    private Button savePublic;
-    private RelativeLayout savePanel;
     private TextInputLayout textInputLayout;
 
     private Context context;
@@ -56,40 +51,16 @@ public class CreateNewSecretFragment extends Fragment implements SaveDialogListe
         secretText = (EditText)view.findViewById(R.id.secretText);
 
         saveButton = (Button)view.findViewById(R.id.saveButton);
-        savePrivateButton = (Button)view.findViewById(R.id.savePrivate);
-
-        savePublic = (Button)view.findViewById(R.id.savePublic);
-        savePublic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i = new Intent(context, VaultActivity.class);
-                context.startActivity(i);
-
-            }
-        });
 
 
-        savePanel = (RelativeLayout)view.findViewById(R.id.savePanel);
         textInputLayout = (TextInputLayout)view.findViewById(R.id.displayName);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //showSavePanel();
-                SaveDialog dialog = new SaveDialog(context,CreateNewSecretFragment.this);
+                SaveDialog dialog = new SaveDialog(context, CreateNewSecretFragment.this);
                 dialog.show();
-            }
-        });
-
-        savePrivateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hideSavePanel();
-               // saveSecret();
-
-
-
             }
         });
 
@@ -97,17 +68,6 @@ public class CreateNewSecretFragment extends Fragment implements SaveDialogListe
         return view;
     }
 
-    private void showSavePanel()
-    {
-        saveButton.setVisibility(View.GONE);
-        savePanel.setVisibility(View.VISIBLE);
-    }
-
-    private void hideSavePanel()
-    {
-        saveButton.setVisibility(View.VISIBLE);
-        savePanel.setVisibility(View.GONE);
-    }
 
 
     public void saveSecret(String displayName)

@@ -26,7 +26,6 @@ public class FileUtil {
     public static void Loader(Context context)
     {
         MainVault mainVault = new MainVault(context);
-
     }
 
     public static void createNewSecret(Secret secret)
@@ -112,7 +111,6 @@ public class FileUtil {
 
         for(String name: fileNames) {
 
-            Log.d("Files", name + " ," + fileName);
             if (fileName.equals(name)) {
                 return true;
             }

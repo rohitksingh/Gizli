@@ -1,5 +1,6 @@
 package com.rohksin.gizli.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -43,6 +44,9 @@ public class CreateSecretActivity extends AppCompatActivity {
     private TextView creteShoppingList;
     private TextView createTodoList;
 
+    private Button privateFiles;
+    private Button publicFiles;
+
 
     @Override
     public void onCreate(Bundle savedInstaceState)
@@ -51,6 +55,17 @@ public class CreateSecretActivity extends AppCompatActivity {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.create_new_secret_activity_layout);
+
+        privateFiles = (Button)findViewById(R.id.privateFiles);
+        publicFiles = (Button)findViewById(R.id.publicFiles);
+
+        privateFiles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(CreateSecretActivity.this,MainActivity.class);
+                startActivity(i);
+            }
+        });
 
         creteShoppingList = (TextView)findViewById(R.id.creteShoppingList);
         createTodoList = (TextView)findViewById(R.id.creteTODOList);
