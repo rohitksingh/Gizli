@@ -14,14 +14,16 @@ import android.widget.RelativeLayout;
 
 import com.rohksin.gizli.Activities.AddNewItem;
 import com.rohksin.gizli.Activities.VaultActivity;
+import com.rohksin.gizli.CallBackListeners.SaveDialogListener;
 import com.rohksin.gizli.POJO.Secret;
 import com.rohksin.gizli.R;
+import com.rohksin.gizli.SaveDialog;
 import com.rohksin.gizli.Utility.FileUtil;
 
 /**
  * Created by Illuminati on 9/5/2017.
  */
-public class CreateNewSecretFragment extends Fragment{
+public class CreateNewSecretFragment extends Fragment implements SaveDialogListener {
 
     private EditText secretText;
     private Button saveButton;
@@ -74,7 +76,9 @@ public class CreateNewSecretFragment extends Fragment{
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showSavePanel();
+                //showSavePanel();
+                SaveDialog dialog = new SaveDialog(context,CreateNewSecretFragment.this);
+                dialog.show();
             }
         });
 
@@ -82,7 +86,10 @@ public class CreateNewSecretFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 hideSavePanel();
-                saveSecret();
+               // saveSecret();
+
+
+
             }
         });
 
@@ -103,14 +110,25 @@ public class CreateNewSecretFragment extends Fragment{
     }
 
 
-    public void saveSecret()
+    public void saveSecret(String displayName)
     {
         Secret secret = new Secret();
         secret.setSecret(secretText.getText().toString());
-        secret.setDisplayName(textInputLayout.getEditText().getText().toString());
+        secret.setDisplayName(displayName);
         FileUtil.createNewSecret(secret);
         FileUtil.makeToast(context, "Saved SuccessFully");
     }
 
 
+    @Override
+    public void savePublic(String name) {
+        Intent i = new Intent(context, VaultActivity.class);
+        context.startActivity(i);
+    }
+
+    @Override
+    public void savePrivate(String name) {
+        saveSecret(name);
+    }
 }
+

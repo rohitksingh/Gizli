@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/savePanel"
+android:layout_width="match_parent"
+android:layout_height="140dp"
+android:background="@android:color/holo_orange_dark"
+android:layout_alignBottom="@id/scrollArea"
+android:layout_marginLeft="30dp"
+android:layout_marginRight="30dp"
+android:animateLayoutChanges="true"
+    >
+<android.support.design.widget.TextInputLayout
+    android:id="@+id/displayName"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    >
+    <android.support.design.widget.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="DisplayName"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:maxLines="1"
+        android:textColorHint="@android:color/holo_red_dark"
+        />
+</android.support.design.widget.TextInputLayout>
+<Button
+    android:id="@+id/savePublic"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Public"
+    android:layout_alignParentBottom="true"
+    android:layout_margin="10dp"
+    />
+<Button
+    android:id="@+id/savePrivate"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Private"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:layout_margin="10dp"
+    />
+
+</RelativeLayout>

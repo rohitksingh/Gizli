@@ -2,6 +2,7 @@ package com.rohksin.gizli.Utility;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.rohksin.gizli.POJO.Certificate;
@@ -101,6 +102,23 @@ public class FileUtil {
 
         //Certificate certificate = (Certificate)ArtifactCreator.readArtifact(new File(mainPasswordile,MAIN_PASSWORD_FILE_NAME+".txt"));
         return certificate.getSecret().equals(password);
+    }
+
+    public static boolean fileExists(String fileName)
+    {
+        String[] fileNames = MainVault.getAllFileNames();
+
+        fileName = fileName + ".txt";
+
+        for(String name: fileNames) {
+
+            Log.d("Files", name + " ," + fileName);
+            if (fileName.equals(name)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 
