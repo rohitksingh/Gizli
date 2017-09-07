@@ -16,6 +16,10 @@ import com.rohksin.gizli.Utility.MainVault;
 /**
  * Created by Illuminati on 8/19/2017.
  */
+
+/*
+ Delete this file
+ */
 public class AddNewItem extends AppCompatActivity {
 
     private boolean resultSaved = false;
@@ -81,7 +85,7 @@ public class AddNewItem extends AppCompatActivity {
         outBundle.putBoolean("REsultSAVED",resultSaved);
     }
 
-    //TODO WRITE VALIDATION CHECK IF THAT FILE EXISTS // CHECK FOR MANDATORY FIELDS
+
     private void validation(Secret secret)
     {
         String fileName = displayText.getText().toString();

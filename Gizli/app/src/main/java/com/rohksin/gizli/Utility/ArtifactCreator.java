@@ -1,7 +1,10 @@
 package com.rohksin.gizli.Utility;
 
+import android.util.Log;
+
 import com.rohksin.gizli.POJO.MainPassword;
 import com.rohksin.gizli.POJO.Secret;
+import com.rohksin.gizli.POJO.SecretMetaData;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,6 +19,12 @@ import java.util.List;
 /**
  * Created by Illuminati on 8/19/2017.
  */
+
+
+/*
+     TODO WRITE A SEPERATE METHOD FOT EDIT ARTIFACT IF IT IS NOT AN OVERHEAD , IF PERFORMANCE IS INCREASED
+
+ */
 public class ArtifactCreator {
 
     public static void writeArtifact(File name,Secret secret)
@@ -29,8 +38,8 @@ public class ArtifactCreator {
             e.printStackTrace();
         }
         try {
-             oos = new ObjectOutputStream(fos);
-             oos.writeObject(secret);
+            oos = new ObjectOutputStream(fos);
+            oos.writeObject(secret);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -73,5 +82,13 @@ public class ArtifactCreator {
     {
         writeArtifact(name,secret);
     }
+
+    public static void deleteArtifact(String path)
+    {
+        File file = new File(path);
+        file.delete();
+
+    }
+
 
 }

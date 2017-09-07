@@ -16,6 +16,11 @@ import java.util.List;
 /**
  * Created by Illuminati on 8/19/2017.
  */
+
+/*
+      TODO MAKE A LOADER UTIL (SEPERATE CLASS WHICH WILL BE INSTANTIATED IN SPLASH ACTIVITY)
+
+ */
 public class FileUtil {
 
     public static final String SECRET_PASS_OBJECT = "com.rohksin.gizli.Utility.FileUtil.SECRET_PASS_OBJECT";
@@ -118,6 +123,17 @@ public class FileUtil {
 
         return false;
     }
+
+    public static void editSecret(Secret secret)
+    {
+        createNewSecret(secret);
+    }
+
+    public static void deleteSecret(String filePath)
+    {
+        ArtifactCreator.deleteArtifact(filePath);
+    }
+
 
 
 }

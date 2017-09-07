@@ -1,5 +1,6 @@
 package com.rohksin.gizli.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -101,7 +102,8 @@ public class VaultListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                   public void onClick(View v) {
                       Intent i = new Intent(context, SeeSercretActivity.class);
                       i.putExtra(FileUtil.SECRET_PASS_OBJECT, secrets.get(position));
-                      context.startActivity(i);
+                     // context.startActivity(i);
+                      ((Activity)context).startActivityForResult(i,1709);
                   }
               });
 
