@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.rohksin.gizli.Activities.VaultActivity;
 import com.rohksin.gizli.CallBackListeners.SaveDialogListener;
@@ -26,6 +27,8 @@ public class CreateNewSecretFragment extends Fragment implements SaveDialogListe
     private EditText secretText;
     private Button saveButton;
     private TextInputLayout textInputLayout;
+
+    private LinearLayout clearAll;
 
     private Context context;
 
@@ -61,6 +64,15 @@ public class CreateNewSecretFragment extends Fragment implements SaveDialogListe
                 //showSavePanel();
                 SaveDialog dialog = new SaveDialog(context, CreateNewSecretFragment.this);
                 dialog.show();
+            }
+        });
+
+        clearAll = (LinearLayout)view.findViewById(R.id.clearAll);
+
+        clearAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                secretText.setText("");
             }
         });
 

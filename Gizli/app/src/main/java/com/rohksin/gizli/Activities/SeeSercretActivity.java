@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rohksin.gizli.Dialog.SaveEditDialog;
 import com.rohksin.gizli.POJO.Secret;
 import com.rohksin.gizli.R;
 import com.rohksin.gizli.Utility.FileUtil;
@@ -57,9 +58,14 @@ public class SeeSercretActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // ADD A DIALOG YES NO DIALOG
 
+                SaveEditDialog dialog = new SaveEditDialog(SeeSercretActivity.this);
+                dialog.show();
+                /*
                 secret.setSecret(secretText.getText().toString());
                 FileUtil.editSecret(secret);
                 Toast.makeText(SeeSercretActivity.this,"Edited successfully",Toast.LENGTH_SHORT).show();
+
+                */
 
             }
         });
