@@ -2,23 +2,34 @@
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
         android:elevation="100dp"
+        android:background="@android:color/transparent"
         >
-     <Button
-         android:id="@+id/publicFiles"
-         android:text="public Files"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_weight="1"
-         />
-     <Button
-         android:id="@+id/privateFiles"
-         android:text="public Files"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_weight="1"
-         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GIZLI"
+        android:layout_weight="2"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
+        android:paddingLeft="10dp"
+        android:textStyle="bold"
+        />
+    <include layout="@layout/options"
+        android:id="@+id/publicFiles"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="6dp"
+        />
+    <include layout="@layout/options"
+        android:id="@+id/privateFiles"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="6dp"
+        />
     </LinearLayout>

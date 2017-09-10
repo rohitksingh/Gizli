@@ -31,8 +31,15 @@ public class ArtifactCreator {
     {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
+        SecretMetaData metaData;
         try {
+
             File file = new File(name,secret.getDisplayName()+".txt");
+
+            metaData = new SecretMetaData();
+            metaData.setFilePath(file.toString());
+            secret.setMetaData(metaData);
+
             fos = new FileOutputStream(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -40,6 +47,7 @@ public class ArtifactCreator {
         try {
             oos = new ObjectOutputStream(fos);
             oos.writeObject(secret);
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

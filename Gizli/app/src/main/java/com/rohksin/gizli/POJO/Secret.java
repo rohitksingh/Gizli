@@ -14,9 +14,10 @@ import java.io.Serializable;
 public class Secret implements Serializable{
 
 
-    private String displayName;
-    private String description;
-    private String secret;
+     private String displayName;
+     private String description;
+     private String secret;
+     private SecretMetaData metaData;
 
     public SecretMetaData getMetaData() {
         return metaData;
@@ -25,9 +26,6 @@ public class Secret implements Serializable{
     public void setMetaData(SecretMetaData metaData) {
         this.metaData = metaData;
     }
-
-    private SecretMetaData metaData;
-
     public String getDisplayName() {
         return displayName;
     }

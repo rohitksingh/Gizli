@@ -105,6 +105,8 @@ public class FileUtil {
         Certificate certificate = (Certificate)ArtifactCreator.readArtifact(new File(MainVault.giveCentralVault(),MAIN_PASSWORD_FILE_NAME+".txt"));
 
         //Certificate certificate = (Certificate)ArtifactCreator.readArtifact(new File(mainPasswordile,MAIN_PASSWORD_FILE_NAME+".txt"));
+        Log.d("Pass",password +" "+ (certificate==null));
+
         return certificate.getSecret().equals(password);
     }
 

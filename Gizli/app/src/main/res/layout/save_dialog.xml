@@ -6,8 +6,6 @@ android:layout_width="match_parent"
 android:layout_height="140dp"
 android:background="@android:color/holo_orange_dark"
 android:layout_alignBottom="@id/scrollArea"
-android:layout_marginLeft="30dp"
-android:layout_marginRight="30dp"
 android:animateLayoutChanges="true"
     >
 <android.support.design.widget.TextInputLayout
@@ -36,6 +34,9 @@ android:animateLayoutChanges="true"
     android:text="Public"
     android:layout_alignParentBottom="true"
     android:layout_margin="10dp"
+    android:layout_marginLeft="40dp"
+    android:background="@drawable/rounded_button"
+    android:textColor="#ffffff"
     />
 <Button
     android:id="@+id/savePrivate"
@@ -45,6 +46,9 @@ android:animateLayoutChanges="true"
     android:layout_alignParentBottom="true"
     android:layout_alignParentRight="true"
     android:layout_margin="10dp"
+    android:layout_marginRight="40dp"
+    android:background="@drawable/rounded_button"
+    android:textColor="#ffffff"
     />
 
 </RelativeLayout>

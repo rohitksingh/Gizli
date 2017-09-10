@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rohksin.gizli.Fragments.CreateNewSecretFragment;
@@ -44,8 +46,8 @@ public class CreateSecretActivity extends AppCompatActivity {
     private TextView creteShoppingList;
     private TextView createTodoList;
 
-    private Button privateFiles;
-    private Button publicFiles;
+    private LinearLayout privateFiles;
+    private LinearLayout publicFiles;
 
 
     @Override
@@ -56,8 +58,8 @@ public class CreateSecretActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.create_new_secret_activity_layout);
 
-        privateFiles = (Button)findViewById(R.id.privateFiles);
-        publicFiles = (Button)findViewById(R.id.publicFiles);
+        privateFiles = (LinearLayout)findViewById(R.id.privateFiles);
+        publicFiles = (LinearLayout)findViewById(R.id.publicFiles);
 
         privateFiles.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +68,9 @@ public class CreateSecretActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        setUpOptions(publicFiles, "Public\nFiles", R.drawable.ic_mode_edit_white);
+        setUpOptions(privateFiles,"Private\nFiles",R.drawable.private_file_icon);
 
         creteShoppingList = (TextView)findViewById(R.id.creteShoppingList);
         createTodoList = (TextView)findViewById(R.id.creteTODOList);
@@ -134,4 +139,12 @@ public class CreateSecretActivity extends AppCompatActivity {
                 .commit();
     }
 
+    private void setUpOptions(View view,String name, int logo)
+    {
+        ImageView image = (ImageView)view.findViewById(R.id.optionImage);
+        TextView text = (TextView)view.findViewById(R.id.optionText);
+
+        image.setImageResource(logo);
+        text.setText(name);
+    }
 }

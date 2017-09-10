@@ -1,9 +1,11 @@
 package com.rohksin.gizli.POJO;
 
+import java.io.Serializable;
+
 /**
  * Created by Illuminati on 9/6/2017.
  */
-public class SecretMetaData {
+public class SecretMetaData implements Serializable{
 
     public String filePath;
 

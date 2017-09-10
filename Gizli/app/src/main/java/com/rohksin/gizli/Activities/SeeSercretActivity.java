@@ -1,5 +1,6 @@
 package com.rohksin.gizli.Activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,12 +9,15 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rohksin.gizli.Dialog.SaveEditDialog;
 import com.rohksin.gizli.POJO.Secret;
 import com.rohksin.gizli.R;
+import com.rohksin.gizli.Utility.AppUtil;
 import com.rohksin.gizli.Utility.FileUtil;
 
 /**
@@ -27,6 +31,10 @@ public class SeeSercretActivity extends AppCompatActivity {
     private Secret secret;
     private Button editButton;
 
+    private LinearLayout deleteSecret;
+
+    Intent backIntent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,23 +43,29 @@ public class SeeSercretActivity extends AppCompatActivity {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-       // setContentView(R.layout.see_secret_layout);
-
         setContentView(R.layout.see_secret_activity_test);
 
-
+        backIntent = new Intent();
         secret = (Secret)getIntent().getSerializableExtra(FileUtil.SECRET_PASS_OBJECT);
-
-        //displayName = (TextView)findViewById(R.id.displayName);
-        //desc = (TextView)findViewById(R.id.Desc);
-        //secretText = (TextView)findViewById(R.id.Secret);
-
 
         secretText = (EditText)findViewById(R.id.secretText);
         editButton = (Button)findViewById(R.id.editButton);
 
-        //displayName.setText(secret.getDisplayName());
         secretText.setText(secret.getSecret());
+
+        deleteSecret = (LinearLayout)findViewById(R.id.deleteSecret);
+        AppUtil.setUpOption(deleteSecret,"Delete",R.drawable.ic_delete_white);
+
+        deleteSecret.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setResult(RESULT_OK, backIntent);
+
+                FileUtil.deleteSecret(secret.getMetaData().filePath);
+                finish();
+            }
+        });
+
 
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,11 +91,12 @@ public class SeeSercretActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        Intent mIntent = new Intent();
-
-            setResult(RESULT_OK, mIntent);
-
+        setResult(RESULT_OK, backIntent);
         super.onBackPressed();
     }
+
+
+
+
 
 }

@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.rohksin.gizli.Activities.VaultActivity;
 import com.rohksin.gizli.CallBackListeners.SaveDialogListener;
@@ -25,7 +27,7 @@ import com.rohksin.gizli.Utility.FileUtil;
 public class CreateNewSecretFragment extends Fragment implements SaveDialogListener {
 
     private EditText secretText;
-    private Button saveButton;
+    private LinearLayout saveButton;
     private TextInputLayout textInputLayout;
 
     private LinearLayout clearAll;
@@ -53,7 +55,10 @@ public class CreateNewSecretFragment extends Fragment implements SaveDialogListe
         View view = inflater.inflate(R.layout.create_new_secret_layout, parent , false);
         secretText = (EditText)view.findViewById(R.id.secretText);
 
-        saveButton = (Button)view.findViewById(R.id.saveButton);
+        saveButton = (LinearLayout)view.findViewById(R.id.saveButton);
+        clearAll = (LinearLayout)view.findViewById(R.id.clearAll);
+        setOptions(clearAll,"Clear All",R.drawable.clear_all_icon);
+        setOptions(saveButton,"Save",R.drawable.clear_all_icon);
 
 
         textInputLayout = (TextInputLayout)view.findViewById(R.id.displayName);
@@ -67,7 +72,7 @@ public class CreateNewSecretFragment extends Fragment implements SaveDialogListe
             }
         });
 
-        clearAll = (LinearLayout)view.findViewById(R.id.clearAll);
+
 
         clearAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +106,16 @@ public class CreateNewSecretFragment extends Fragment implements SaveDialogListe
     @Override
     public void savePrivate(String name) {
         saveSecret(name);
+    }
+
+
+    private void setOptions(View view,String name, int icon)
+    {
+        ImageView iconImage = (ImageView)view.findViewById(R.id.optionImage);
+        TextView iconText = (TextView)view.findViewById(R.id.optionText);
+
+        iconImage.setImageResource(icon);
+        iconText.setText(name);
     }
 }
 

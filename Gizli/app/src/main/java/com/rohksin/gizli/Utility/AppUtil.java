@@ -1,8 +1,12 @@
 package com.rohksin.gizli.Utility;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Vibrator;
 import android.support.v4.app.Fragment;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.rohksin.gizli.Fragments.PasswordSetFragment;
 import com.rohksin.gizli.Fragments.SetSecretImageFragment;
@@ -68,5 +72,13 @@ public class AppUtil {
         secretImages.add(R.drawable.gizli);
 
         return secretImages;
+    }
+
+    public static void setUpOption(View view, String iconName,int icon)
+    {
+        ImageView imageView = (ImageView)view.findViewById(R.id.optionImage);
+        TextView textView = (TextView)view.findViewById(R.id.optionText);
+        imageView.setImageResource(icon);
+        textView.setText(iconName);
     }
 }
