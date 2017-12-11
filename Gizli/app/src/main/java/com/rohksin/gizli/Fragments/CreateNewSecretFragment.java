@@ -29,9 +29,7 @@ public class CreateNewSecretFragment extends Fragment implements SaveDialogListe
     private EditText secretText;
     private LinearLayout saveButton;
     private TextInputLayout textInputLayout;
-
     private LinearLayout clearAll;
-
     private Context context;
 
     public static CreateNewSecretFragment getInstance()
@@ -54,25 +52,20 @@ public class CreateNewSecretFragment extends Fragment implements SaveDialogListe
     {
         View view = inflater.inflate(R.layout.create_new_secret_layout, parent , false);
         secretText = (EditText)view.findViewById(R.id.secretText);
-
         saveButton = (LinearLayout)view.findViewById(R.id.saveButton);
         clearAll = (LinearLayout)view.findViewById(R.id.clearAll);
         setOptions(clearAll,"Clear All",R.drawable.clear_all_icon);
         setOptions(saveButton,"Save",R.drawable.clear_all_icon);
-
 
         textInputLayout = (TextInputLayout)view.findViewById(R.id.displayName);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //showSavePanel();
                 SaveDialog dialog = new SaveDialog(context, CreateNewSecretFragment.this);
                 dialog.show();
             }
         });
-
-
 
         clearAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,11 +74,8 @@ public class CreateNewSecretFragment extends Fragment implements SaveDialogListe
             }
         });
 
-
         return view;
     }
-
-
 
     public void saveSecret(String displayName)
     {
@@ -95,7 +85,6 @@ public class CreateNewSecretFragment extends Fragment implements SaveDialogListe
         FileUtil.createNewSecret(secret);
         FileUtil.makeToast(context, "Saved SuccessFully");
     }
-
 
     @Override
     public void savePublic(String name) {
@@ -113,7 +102,6 @@ public class CreateNewSecretFragment extends Fragment implements SaveDialogListe
     {
         ImageView iconImage = (ImageView)view.findViewById(R.id.optionImage);
         TextView iconText = (TextView)view.findViewById(R.id.optionText);
-
         iconImage.setImageResource(icon);
         iconText.setText(name);
     }

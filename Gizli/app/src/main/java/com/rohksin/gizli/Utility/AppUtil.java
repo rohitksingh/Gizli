@@ -25,7 +25,6 @@ import java.util.List;
 public class AppUtil {
 
     private static Context context;
-
     private static final String LAST_VISITED_DATE_FORMAT = "h:m a (d MMM)";
 
     public AppUtil(Context context)
@@ -42,9 +41,7 @@ public class AppUtil {
     public static String getCurrentTime()
     {
         SimpleDateFormat sdf = new SimpleDateFormat(LAST_VISITED_DATE_FORMAT);
-
         String currentDate = sdf.format(new Date());
-
         return "Last visited at "+currentDate;
 
     }
@@ -52,11 +49,9 @@ public class AppUtil {
     public static Fragment[] getAllSignUpFragments(Certificate certificate)
     {
        return new Fragment[]{
-
                PasswordSetFragment.getInstance(certificate),
                SetSecretImageFragment.getInstance(certificate),
                SetUpFinish.getInstance(certificate)
-
         };
     }
 
@@ -70,7 +65,6 @@ public class AppUtil {
         secretImages.add(R.drawable.ic_delete_white);
         secretImages.add(R.drawable.ic_mode_edit_white);
         secretImages.add(R.drawable.gizli);
-
         return secretImages;
     }
 

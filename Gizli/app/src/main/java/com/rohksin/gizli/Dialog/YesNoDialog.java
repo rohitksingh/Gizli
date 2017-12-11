@@ -32,7 +32,6 @@ public abstract class YesNoDialog extends Dialog{
 
     public abstract int provideLayout();
 
-
     public abstract Object dataToSend();
 
 

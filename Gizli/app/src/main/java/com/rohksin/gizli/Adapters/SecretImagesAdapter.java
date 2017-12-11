@@ -63,10 +63,6 @@ public class SecretImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
 
 
-
-
-
-
     }
 
     @Override
@@ -74,25 +70,20 @@ public class SecretImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return images.size();
     }
 
-
     public class ImageViewHolder extends RecyclerView.ViewHolder{
 
         private ImageView secretImage;
 
-
         public ImageViewHolder(View itemView) {
             super(itemView);
             secretImage = (ImageView)itemView.findViewById(R.id.secretImage);
-
             secretImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     if (doubleTap) {
-
                         fragment.setVisibility(images.get(getAdapterPosition()));
                         selectedItem = getAdapterPosition();
-
                         notifyDataSetChanged();
                     } else {
 
@@ -111,11 +102,7 @@ public class SecretImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
             });
 
-
-            //notifyDataSetChanged();
         }
     }
 }
 
-
-/// Can i  get referrence to attached Fragment ?

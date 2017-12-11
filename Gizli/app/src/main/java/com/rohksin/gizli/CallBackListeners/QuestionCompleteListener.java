@@ -9,7 +9,6 @@ public interface QuestionCompleteListener {
 
     public void questionComplete(Certificate certificate);
 
-
     public void back();
 
 }

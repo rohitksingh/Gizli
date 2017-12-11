@@ -29,18 +29,13 @@ public class PasswordSetFragment extends Fragment {
     private TextInputLayout confirmPassword;
     private  Context context;
     private InputMethodManager imm;
-    /// Is there any issue using onAttach Context ?
-
-
 
     public static PasswordSetFragment getInstance(Certificate certificateFromActivity)
     {
         Bundle args = new Bundle();
         PasswordSetFragment fragment = new PasswordSetFragment();
         fragment.setArguments(args);
-
         certificate = certificateFromActivity;
-
         return fragment;
     }
 
@@ -59,12 +54,9 @@ public class PasswordSetFragment extends Fragment {
 
         imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-
-
         Button button = (Button)view.findViewById(R.id.signUpButton);
         button.setText("NEXT");
         password = (TextInputLayout)view.findViewById(R.id.password);
-
         confirmPassword = (TextInputLayout)view.findViewById(R.id.confirmPassword);
 
         button.setOnClickListener(new View.OnClickListener() {

@@ -20,73 +20,41 @@ import com.rohksin.gizli.R;
 import com.rohksin.gizli.Utility.AppUtil;
 import com.rohksin.gizli.Utility.FileUtil;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by Illuminati on 8/20/2017.
  */
 public class SeeSercretActivity extends AppCompatActivity {
 
-    private TextView displayName;
-    private TextView creationDate;
-    private TextView secretText;
-    private Secret secret;
-    private Button editButton;
+    @BindView(R.id.secretText)
+    TextView secretText;
 
-    private LinearLayout deleteSecret;
+    @BindView(R.id.editButton)
+    Button editButton;
+
+    @BindView(R.id.deleteSecret)
+    LinearLayout deleteSecret;
 
     Intent backIntent;
-
+    private Secret secret;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.see_secret_activity_test);
-
-        backIntent = new Intent();
-        secret = (Secret)getIntent().getSerializableExtra(FileUtil.SECRET_PASS_OBJECT);
-
-        secretText = (EditText)findViewById(R.id.secretText);
-        editButton = (Button)findViewById(R.id.editButton);
-
-        secretText.setText(secret.getSecret());
-
-        deleteSecret = (LinearLayout)findViewById(R.id.deleteSecret);
-        AppUtil.setUpOption(deleteSecret,"Delete",R.drawable.ic_delete_white);
-
-        deleteSecret.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setResult(RESULT_OK, backIntent);
-
-                FileUtil.deleteSecret(secret.getMetaData().filePath);
-                finish();
-            }
-        });
-
-
-        editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // ADD A DIALOG YES NO DIALOG
-
-                SaveEditDialog dialog = new SaveEditDialog(SeeSercretActivity.this);
-                dialog.show();
-                /*
-                secret.setSecret(secretText.getText().toString());
-                FileUtil.editSecret(secret);
-                Toast.makeText(SeeSercretActivity.this,"Edited successfully",Toast.LENGTH_SHORT).show();
-
-                */
-
-            }
-        });
+        ButterKnife.bind(this);
+        setUpUi();
 
     }
 
 
+    //*************************************************************************************
+    // Activity callback Methods
+    //*************************************************************************************
 
     @Override
     public void onBackPressed() {
@@ -96,6 +64,39 @@ public class SeeSercretActivity extends AppCompatActivity {
     }
 
 
+    //*************************************************************************************
+    // private methods
+    //*************************************************************************************
+
+    private void setUpUi()
+    {
+        backIntent = new Intent();
+        secret = (Secret)getIntent().getSerializableExtra(FileUtil.SECRET_PASS_OBJECT);
+        secretText.setText(secret.getSecret());
+
+        AppUtil.setUpOption(deleteSecret,"Delete",R.drawable.ic_delete_white);
+
+        deleteSecret.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setResult(RESULT_OK, backIntent);
+                FileUtil.deleteSecret(secret.getMetaData().filePath);
+                finish();
+            }
+        });
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // ADD A DIALOG YES NO DIALOG
+
+                SaveEditDialog dialog = new SaveEditDialog(SeeSercretActivity.this);
+                dialog.show();
+
+            }
+        });
+
+    }
 
 
 

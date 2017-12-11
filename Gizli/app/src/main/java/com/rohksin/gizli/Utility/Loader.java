@@ -12,22 +12,17 @@ public class Loader {
     private static boolean loadedResult = false;
     private static boolean alreadySignedUp = false;
 
-
     public static boolean alreadySignedUp()
     {
         if(loadedResult)
         {
-            Log.d("CHECK","Result Loaded");
             return alreadySignedUp;
         }
         else {
             //Check if the files exists then decide
             //Got to update the alreadySignedUp then return  alreadySignedUp = someMethod;
 
-            Log.d("CHECK","Result Not Loaded");
-
             loadedResult = true;
-
             alreadySignedUp = lookForCrtificateIfExist();
 
             return alreadySignedUp;
@@ -38,15 +33,11 @@ public class Loader {
     private static boolean lookForCrtificateIfExist()
     {
         String[] allfiles = MainVault.getAllFileNames();
-        //String certiface = MainVault.MainCertificate;
 
         Certificate certificate = FileUtil.getCertificate();
 
-        Log.d("Validation",(certificate==null)+"");
-
         if(certificate!=null)
         {
-
             if(certificate.getSecret()!=null)
             {
                 return true;
@@ -54,7 +45,6 @@ public class Loader {
 
             return false;
         }
-
 
         return false;
     }

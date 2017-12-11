@@ -9,6 +9,7 @@ import android.widget.ImageView;
  * Created by Illuminati on 9/3/2017.
  */
 public class SecretImage extends ImageView {
+
     public SecretImage(Context context) {
         super(context);
     }

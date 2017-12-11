@@ -13,6 +13,9 @@ import com.rohksin.gizli.R;
 import com.rohksin.gizli.Utility.FileUtil;
 import com.rohksin.gizli.Utility.MainVault;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by Illuminati on 8/19/2017.
  */
@@ -24,27 +27,27 @@ public class AddNewItem extends AppCompatActivity {
 
     private boolean resultSaved = false;
 
-    private EditText displayText = null;
-    private EditText desc = null;
-    private EditText secretText = null;
+    @BindView(R.id.Text)
+    EditText displayText;
+
+    @BindView(R.id.Desc)
+    EditText desc;
+
+    @BindView(R.id.Secret)
+    EditText secretText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.add_item_layout);
+        ButterKnife.bind(this);
 
         if(savedInstanceState!=null)
         {
             resultSaved = savedInstanceState.getBoolean("REsultSAVED");
         }
-
-        displayText = (EditText)findViewById(R.id.Text);
-        desc = (EditText)findViewById(R.id.Desc);
-        secretText = (EditText)findViewById(R.id.Secret);
 
         Button button = (Button)findViewById(R.id.AddButton);
         button.setText("Save");
@@ -59,7 +62,12 @@ public class AddNewItem extends AppCompatActivity {
             }
         });
 
+
     }
+
+    //*************************************************************************************
+    // Activity Callback Methods
+    //*************************************************************************************
 
     @Override
     public void onBackPressed() {
@@ -85,6 +93,10 @@ public class AddNewItem extends AppCompatActivity {
         outBundle.putBoolean("REsultSAVED",resultSaved);
     }
 
+
+    //*************************************************************************************
+    // Private Methods
+    //*************************************************************************************
 
     private void validation(Secret secret)
     {
@@ -117,17 +129,14 @@ public class AddNewItem extends AppCompatActivity {
         resultSaved = true;
     }
 
-    public boolean fileAlreadyExists(String[] allfiles,String file)
+    private boolean fileAlreadyExists(String[] allfiles,String file)
     {
         for(String fileName:allfiles)
         {
             if(fileName.equals(file)) {
-
                 return true;
-
             }
         }
-
         return false;
     }
 

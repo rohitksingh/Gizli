@@ -26,11 +26,9 @@ public class MainVault {
         return context.getFilesDir().list();
     }
 
-
     public static File[] getAllFiles()
     {
         return context.getFilesDir().listFiles();
     }
-
 
 }

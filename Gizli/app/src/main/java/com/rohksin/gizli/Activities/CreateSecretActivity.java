@@ -7,8 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,15 +14,15 @@ import android.widget.TextView;
 import com.rohksin.gizli.Fragments.CreateNewSecretFragment;
 import com.rohksin.gizli.Fragments.CreateShoppingListFragment;
 import com.rohksin.gizli.Fragments.CreateTODOListFragment;
-import com.rohksin.gizli.POJO.Certificate;
 import com.rohksin.gizli.POJO.Secret;
 import com.rohksin.gizli.R;
 import com.rohksin.gizli.Utility.FileUtil;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Illuminati on 9/4/2017.
@@ -40,26 +38,39 @@ public class CreateSecretActivity extends AppCompatActivity {
 
 
     FragmentManager manager;
-
     private List<Fragment> fragments;
 
-    private TextView creteShoppingList;
-    private TextView createTodoList;
+    @BindView(R.id.creteShoppingList)
+    TextView creteShoppingList;
 
-    private LinearLayout privateFiles;
-    private LinearLayout publicFiles;
+    @BindView(R.id.creteTODOList)
+    TextView createTodoList;
 
+    @BindView(R.id.privateFiles)
+    LinearLayout privateFiles;
+
+    @BindView(R.id.publicFiles)
+    LinearLayout publicFiles;
 
     @Override
     public void onCreate(Bundle savedInstaceState)
     {
         super.onCreate(savedInstaceState);
-
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.create_new_secret_activity_layout);
+        ButterKnife.bind(this);
+        setUpUi();
+    }
 
-        privateFiles = (LinearLayout)findViewById(R.id.privateFiles);
-        publicFiles = (LinearLayout)findViewById(R.id.publicFiles);
+
+    //*************************************************************************************
+    // Private Methods
+    //*************************************************************************************
+
+    private void setUpUi()
+    {
+        setUpOptions(publicFiles, "Public\nFiles", R.drawable.ic_mode_edit_white);
+        setUpOptions(privateFiles,"Private\nFiles",R.drawable.private_file_icon);
 
         privateFiles.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,12 +79,6 @@ public class CreateSecretActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-        setUpOptions(publicFiles, "Public\nFiles", R.drawable.ic_mode_edit_white);
-        setUpOptions(privateFiles,"Private\nFiles",R.drawable.private_file_icon);
-
-        creteShoppingList = (TextView)findViewById(R.id.creteShoppingList);
-        createTodoList = (TextView)findViewById(R.id.creteTODOList);
 
         creteShoppingList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,25 +98,10 @@ public class CreateSecretActivity extends AppCompatActivity {
 
         ///TODO CREATE UTILITY METHOD
         setUpFragments();
-
-
         Fragment fragment = giveDefaultFragment(); //CreateNewSecretFragment.getInstance();
-
-
         manager = getSupportFragmentManager();
-
         showFragment(fragment);
-
-        /*manager.beginTransaction()
-                .replace(R.id.fragmentPlaceHolder,fragment)
-                .commit();
-                */
-
-
-
-
     }
-
 
     private void createSecret(Secret secret)
     {

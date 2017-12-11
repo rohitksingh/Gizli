@@ -23,47 +23,104 @@ import com.rohksin.gizli.Utility.AppUtil;
 import com.rohksin.gizli.Utility.FileUtil;
 import com.rohksin.gizli.Utility.GizliAnimUtil;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button one;
-    private Button two;
-    private Button three;
-    private Button four;
-    private Button five;
-    private Button six;
-    private Button seven;
-    private Button eight;
-    private Button nine;
-    private Button zero;
-    private Button cancel;
-    private Button view;
-    private EditText text;
-
-    private TextView forgotPassword;
-
     private boolean doubleTapped = false;
 
+    @BindView(R.id.one)
+    Button one;
+
+    @BindView(R.id.two)
+    Button two;
+
+    @BindView(R.id.three)
+    Button three;
+
+    @BindView(R.id.four)
+    Button four;
+
+    @BindView(R.id.five)
+    Button five;
+
+    @BindView(R.id.six)
+    Button six;
+
+    @BindView(R.id.seven)
+    Button seven;
+
+    @BindView(R.id.eight)
+    Button eight;
+
+    @BindView(R.id.nine)
+    Button nine;
+
+    @BindView(R.id.zero)
+    Button zero;
+
+    @BindView(R.id.cancel)
+    Button cancel;
+
+    @BindView(R.id.view)
+    Button view;
+
+    @BindView(R.id.vaultPassword)
+    EditText text;
+
+    @BindView(R.id.forgotPassword)
+    TextView forgotPassword;
+
+    @BindView(R.id.Submit)
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setAnimation();
-
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+        setUpUi();
 
-        text = (EditText)findViewById(R.id.vaultPassword);
+    }
 
+    //*************************************************************************************
+    // Activity callback Methods
+    //*************************************************************************************
+
+    @Override
+    public void onBackPressed()
+    {
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleTapped = false;
+            }
+        }, 2000);
+
+        if(doubleTapped)
+        {
+            super.onBackPressed();
+        }
+        else {
+            Toast.makeText(MainActivity.this,"Press again to exit",Toast.LENGTH_SHORT).show();
+            doubleTapped = true;
+        }
+    }
+
+    //*************************************************************************************
+    // Private Methods
+    //*************************************************************************************
+
+    private void setUpUi()
+    {
         text.setShowSoftInputOnFocus(false);
-
         loadKeyPad();
-
-        forgotPassword = (TextView)findViewById(R.id.forgotPassword);
-
-        Button button = (Button)findViewById(R.id.Submit);
         GizliAnimUtil.popUpAnmi(button);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 boolean result = FileUtil.passwordCorrect(text.getText() + "");
                 if (result == true) {
-                    // Toast.makeText(MainActivity.this,"Login SuccessFul",Toast.LENGTH_LONG).show();
+
                     Intent i = new Intent(MainActivity.this, VaultActivity.class);
                     if (Build.VERSION.SDK_INT > 20) {
                         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
@@ -91,46 +148,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onBackPressed()
+    private void loadKeyPad()
     {
-
-
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-
-                doubleTapped = false;
-
-            }
-        }, 2000);
-
-        if(doubleTapped)
-        {
-            super.onBackPressed();
-        }
-        else {
-            Toast.makeText(MainActivity.this,"Press again to exit",Toast.LENGTH_SHORT).show();
-            doubleTapped = true;
-        }
-    }
-
-    public void loadKeyPad()
-    {
-        one = (Button)findViewById(R.id.one);
-        two = (Button)findViewById(R.id.two);
-        three = (Button)findViewById(R.id.three);
-        four = (Button)findViewById(R.id.four);
-        five = (Button)findViewById(R.id.five);
-        six = (Button)findViewById(R.id.six);
-        seven = (Button)findViewById(R.id.seven);
-        eight = (Button)findViewById(R.id.eight);
-        nine = (Button)findViewById(R.id.nine);
-        zero = (Button)findViewById(R.id.zero);
-        cancel = (Button)findViewById(R.id.cancel);
-        view = (Button)findViewById(R.id.view);
-
 
         GizliAnimUtil.fadeInAnim(one,3000);
         GizliAnimUtil.fadeInAnim(two,3000);
@@ -143,7 +162,6 @@ public class MainActivity extends AppCompatActivity {
         GizliAnimUtil.fadeInAnim(nine,3000);
         GizliAnimUtil.fadeInAnim(zero,3000);
         GizliAnimUtil.fadeInAnim(cancel,3000);
-
 
         one.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -222,12 +240,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
     }
 
-    public void setAnimation()
+    private void setAnimation()
     {
         if(Build.VERSION.SDK_INT>20)
         {

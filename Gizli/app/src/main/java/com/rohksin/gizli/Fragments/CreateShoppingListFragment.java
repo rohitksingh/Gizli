@@ -26,7 +26,6 @@ public class CreateShoppingListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.content_main, parent, false);
-
         return view;
     }
 }

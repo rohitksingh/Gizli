@@ -35,11 +35,9 @@ public class ArtifactCreator {
         try {
 
             File file = new File(name,secret.getDisplayName()+".txt");
-
             metaData = new SecretMetaData();
             metaData.setFilePath(file.toString());
             secret.setMetaData(metaData);
-
             fos = new FileOutputStream(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -57,17 +55,13 @@ public class ArtifactCreator {
     {
         File file = name;
         Secret secret = null;
-        //List<Secret> secrets;
         try {
 
             FileInputStream fos = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fos);
             Object o = null;
             try {
-               // while ((o = (ois.readObject())) != null) {
-                     //secrets.add((Secret)o);
                 secret = (Secret)ois.readObject();
-
             }
             catch (ClassNotFoundException e)
             {
@@ -81,7 +75,6 @@ public class ArtifactCreator {
         {
             e.printStackTrace();
         }
-
         return null;
     }
 
@@ -95,7 +88,6 @@ public class ArtifactCreator {
     {
         File file = new File(path);
         file.delete();
-
     }
 
 

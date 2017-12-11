@@ -32,21 +32,16 @@ CHECK IF FILE ALREADY EXISTS
 public class SaveDialog extends Dialog {
 
     private SaveDialogListener listener;
-
     private Button savePublic;
     private Button savePrivate;
-
     private Context context;
-
     private TextInputLayout textInputLayout;
-
 
     public SaveDialog(Context context,SaveDialogListener listener) {
         super(context);
         this.context = context;
         this.listener = listener;
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState)

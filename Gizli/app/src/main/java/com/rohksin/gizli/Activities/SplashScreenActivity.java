@@ -33,23 +33,20 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
 
+    //*************************************************************************************
+    // private methods
+    //*************************************************************************************
+
     // To provide context to every Utility class
     private void initiateUtils()
     {
         AppUtil appUtil = new AppUtil(SplashScreenActivity.this);
     }
 
-/*
-    public void loadAllProviders()
-    {
-        Loader loader = new Loader(SplashScreenActivity.this);
-    }
-    */
 
     private class LoadActivity extends AsyncTask{
 
         private boolean isAlreadySignedUp;
-
         private Context context;
 
         public LoadActivity(Context context)
@@ -63,7 +60,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                 Thread.sleep(SPLASH_TIME);
                 isAlreadySignedUp = Loader.alreadySignedUp();
 
-                Log.d("Validation",isAlreadySignedUp+"");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -85,20 +81,12 @@ public class SplashScreenActivity extends AppCompatActivity {
 
               if(isAlreadySignedUp)
               {
-
-                 // i = new Intent(SplashScreenActivity.this,MainActivity.class);
-
                   i = new Intent(SplashScreenActivity.this,CreateSecretActivity.class);
-
-
               }
               else
               {
-                 // i = new Intent(SplashScreenActivity.this,SignUpActivity.class);
-
                   i = new Intent(SplashScreenActivity.this,Test.class);
               }
-
 
             if(Build.VERSION.SDK_INT>20)
             {
@@ -110,7 +98,6 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
 
             finish();
-
 
         }
     }

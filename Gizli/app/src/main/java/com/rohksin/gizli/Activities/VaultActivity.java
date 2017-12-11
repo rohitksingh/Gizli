@@ -35,61 +35,45 @@ import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by Illuminati on 8/19/2017.
  */
 public class VaultActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView = null;
     private VaultListAdapter adapter = null;
 
-    private TextView itemsAvailable;
-    private TextView lastVisited;
+    @BindView(R.id.itemsAvailable)
+    TextView itemsAvailable;
+
+    @BindView(R.id.lastVisited)
+    TextView lastVisited;
+
+    @BindView(R.id.AddItem)
+    FloatingActionButton button;
+
+    @BindView(R.id.vaultList)
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.valut_layout);
-
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setAnimation();
-
         setContentView(R.layout.vault_item_list_layout);
-
-        Log.d("Current time", AppUtil.getCurrentTime());
-
-
-        FileUtil.Loader(VaultActivity.this);
-        //TextView textView = (TextView)findViewById(R.id.TotalItems);
-        FloatingActionButton button = (FloatingActionButton)findViewById(R.id.AddItem);
-
-        button.setImageResource(R.drawable.ic_add_box_white);
-
-        itemsAvailable = (TextView)findViewById(R.id.itemsAvailable);
-        lastVisited = (TextView)findViewById(R.id.lastVisited);
-        lastVisited.setText(getLastVisited());
-
-        updateLastVisitedTime();
-
-        recyclerView = (RecyclerView)findViewById(R.id.vaultList);
-
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(llm);
-
-        setUpList();
+        ButterKnife.bind(this);
+        setUpUi();
 
 
-        //textView.setText(MainVault.getAllFileNames().length+" items currently");
-        Log.d("Items", MainVault.getAllFileNames().length + "items");
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(VaultActivity.this,AddNewItem.class);
-                startActivityForResult(i,1709);
-            }
-        });
     }
+
+    //*************************************************************************************
+    // Activity callback methods
+    //*************************************************************************************
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -105,10 +89,33 @@ public class VaultActivity extends AppCompatActivity {
         }
     }
 
+    //*************************************************************************************
+    // private methods
+    //*************************************************************************************
+
+
+    private void setUpUi()
+    {
+        FileUtil.Loader(VaultActivity.this);
+        updateLastVisitedTime();
+        button.setImageResource(R.drawable.ic_add_box_white);
+        lastVisited.setText(getLastVisited());
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(llm);
+        setUpList();
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(VaultActivity.this,AddNewItem.class);
+                startActivityForResult(i,1709);
+            }
+        });
+    }
+
     private void setUpList()
     {
         List<Secret> secretList = FileUtil.getAllSecret();
-        //Collections.sort(secretList);
 
         String msg = null;
         if(secretList.size() <= 1)
@@ -121,11 +128,9 @@ public class VaultActivity extends AppCompatActivity {
         }
 
         itemsAvailable.setText(msg);
-
         adapter = new VaultListAdapter(VaultActivity.this, secretList);
         recyclerView.setAdapter(adapter);
     }
-
 
     public void setAnimation()
     {
@@ -149,9 +154,7 @@ public class VaultActivity extends AppCompatActivity {
     public  String getLastVisited()
     {
         Certificate certificate = FileUtil.getCertificate();
-
         return certificate.getLastVisit();
-
     }
 
 

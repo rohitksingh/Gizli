@@ -34,48 +34,13 @@ public class Test extends AppCompatActivity implements QuestionCompleteListener{
     protected  void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.test);
-
         certificate = new Certificate();
-
         setAllFragments(certificate);
-
         certificate = new Certificate();
-
         fm = getSupportFragmentManager();
-
         fm.beginTransaction().replace(R.id.passwordResetLayout,fragments[0]).commit();
-
-
-
-        /*
-        prev =(Button)findViewById(R.id.prev);
-        next = (Button)findViewById(R.id.next);
-
-        prev.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fm.beginTransaction()
-                        .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
-                        .replace(R.id.passwordResetLayout,givePrevioousFragment())
-                        .commit();
-            }
-        });
-
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fm.beginTransaction()
-                        .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-                        .replace(R.id.passwordResetLayout, giveNextFragment())
-                        .commit();
-            }
-        });
-
-        */
-
 
     }
 

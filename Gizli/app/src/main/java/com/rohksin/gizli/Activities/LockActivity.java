@@ -21,59 +21,25 @@ public class LockActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_activity_layout);
         signUpButton = (Button)findViewById(R.id.signUpButton);
-        Log.d("Life", "oncreate");
     }
 
+    //*************************************************************************************
+    // Private Methods
+    //*************************************************************************************
 
-    @Override
-    protected void onStart()
-    {
-        super.onStart();
-        Log.d("Life","start");
-    }
-
-    @Override
-    public void onResume()
-    {
-        super.onResume();
-        Log.d("Life", "resume");
-    }
-
-    @Override
-    protected void onPause()
-    {
-
-        super.onPause();
-        Log.d("Life", "on Pause");
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d("Life","stop");
-    }
-
-    @Override
-    protected void onDestroy()
-    {
-        super.onDestroy();
-        Log.d("Life", "destroy");
-    }
-
-    public void visibilityGome()
+    private void visibilityGome()
     {
         signUpButton.setVisibility(View.GONE);
     }
 
-
+    //*************************************************************************************
+    // Activity callback Methods
+    //*************************************************************************************
 
     @Override
     protected void onUserLeaveHint()
     {
-       // super.onUserLeaveHint();
         visibilityGome();
-        Log.d("Life", "leave hint");
 
     }
 
