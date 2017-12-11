@@ -15,14 +15,22 @@ import com.rohksin.gizli.POJO.Certificate;
 import com.rohksin.gizli.R;
 import com.rohksin.gizli.Utility.FileUtil;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by Illuminati on 8/21/2017.
  */
 public class SignUpActivity extends AppCompatActivity{
 
-    private TextInputLayout password;
-    private TextInputLayout confirmPassword;
-    private Button signUpButton;
+    @BindView(R.id.password)
+    TextInputLayout password;
+
+    @BindView(R.id.confirmPassword)
+    TextInputLayout confirmPassword;
+
+    @BindView(R.id.signUpButton)
+    Button signUpButton;
 
     private InputMethodManager imm;
 
@@ -30,37 +38,39 @@ public class SignUpActivity extends AppCompatActivity{
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.signup_activity_layout);
+        ButterKnife.bind(this);
+        setUpUi();
+    }
 
+
+    //*************************************************************************************
+    // private methods
+    //*************************************************************************************
+
+    private void setUpUi()
+    {
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-
-        password = (TextInputLayout)findViewById(R.id.password);
         password.requestFocus();
-        confirmPassword = (TextInputLayout)findViewById(R.id.confirmPassword);
         signUpButton = (Button)findViewById(R.id.signUpButton);
-
         signUpButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-
                 if(passesValdatipn())
                 {
                     FileUtil.makeToast(SignUpActivity.this, "Creating certiface");
-
                     signUpUserForFirstTime();
-
                     imm.toggleSoftInput(InputMethodManager.RESULT_SHOWN, 0);
-
                     redirectToLoginActivity();
                 }
             }
         });
-
     }
+
+
 
     private boolean passesValdatipn()
     {
@@ -98,12 +108,9 @@ public class SignUpActivity extends AppCompatActivity{
     private void signUpUserForFirstTime()
     {
         Certificate cert = new Certificate();
-        //cert.setDisplayName(password.getText().toString());
         cert.setSecret(password.getEditText().getText().toString());
         cert.setLastVisit("Welcome To Gizli Vault");
         FileUtil.createCertificate(cert);
     }
-
-
 
 }

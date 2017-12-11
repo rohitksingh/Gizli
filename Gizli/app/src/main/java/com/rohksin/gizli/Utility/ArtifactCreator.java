@@ -47,7 +47,7 @@ public class ArtifactCreator {
         try {
             oos = new ObjectOutputStream(fos);
             oos.writeObject(secret);
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
